@@ -1,9 +1,17 @@
+const db = require('../models/index')
+const BoardSchema = db.board
+
 exports.write = (req, res)=>{
-    const {passengerId, name, teamId, subject} = req.body
-    console.log(`넘어온 JSON 값 : ${JSON.stringify(req.body)}`)
-    console.log(`넘어온 passengerId 값 : ${passengerId}`)
-    console.log(`넘어온 name 값 : ${name}`)
-    console.log(`넘어온 teamId 값 : ${teamId}`)
-    console.log(`넘어온 subject 값 : ${subject}`)
-    res.status(200).json({'result': 'OK'})
+    new BoardSchema(req.body).save(()=>{
+        res.status(200).json({'result':'ok'}) 
+    })
+}
+
+exports.boardlist = (req, res) => {
+    console.log(`boardController Access !!`)
+    BoardSchema.find()
+    .exec((err, boards) => {
+      if (err) return res.status(400).send(err)
+      res.status(200).json({success: true, boards}) 
+    })
 }
