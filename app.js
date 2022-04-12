@@ -37,9 +37,12 @@ app.listen(port, () => {
   console.log('***************** ***************** *****************')
   console.log('***************** ***************** *****************')
 })
+
 app.get('/', (req, res) => {
   res.json({"현재 시간 : ":new Date().toLocaleString()})
 })
 app.get('/api/now', cors(corsOptions),(req, res) => {
   res.json({"now":new Date().toLocaleString()})
 })
+
+
