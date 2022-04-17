@@ -7,3 +7,13 @@ exports.add = (req, res) => {
       res.status(200).json({'result':'ok'}) 
   })
 }
+
+exports.todolist = (req, res) => {
+  console.log(`todoController Access !!`)
+  TodoSchema.find()
+  .exec((err, todos) => {
+    if (err) return res.status(400).send(err)
+    res.status(200).json({success: true, todos}) 
+    console.log({success: true, todos})
+  })
+}

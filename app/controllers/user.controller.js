@@ -14,7 +14,7 @@ exports.userlist = (req, res) => {
   .exec((err, users) => {
     if (err) return res.status(400).send(err)
     res.status(200).json({success: true, users}) 
-    // console.log({success: true, users})
+    console.log({success: true, users})
   })
 }
 exports.profile = (req, res) => {
