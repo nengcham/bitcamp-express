@@ -1,8 +1,9 @@
-const { signup, userlist, profile } = require('../controllers/user.controller');
-// module.exports = x => x.app.post(`${x.url}/signup`, signup) ;
-// module.exports = x => x.app.get(`${x.url}/list`, userlist) ;
+const { signup, login, userlist, profile } = require('../controllers/user.controller');
+const { verifyToken } = require('../routes/middlewares');
 
-module.exports = x => {x.app.post(`${x.url}/signup`, signup)
-                       x.app.get(`${x.url}/list`, userlist)
-                       x.app.get(`${x.url}/profile/:id`, profile)} ;
+module.exports = x => {
+    x.app.post(`${x.url}/signup`, signup)
+    x.app.post(`${x.url}/login`, login)
+    x.app.get(`${x.url}/list`, verifyToken, userlist)
+    x.app.get(`${x.url}/profile/:id`, profile)} ;
 
