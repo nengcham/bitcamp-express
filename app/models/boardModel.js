@@ -1,4 +1,5 @@
-module.exports = mongoose => mongoose.model('board',
+export default function BoardModel(mongoose){
+    mongoose.model('board',
         mongoose.Schema(
             {passengerId: String,
              name: String,
@@ -7,3 +8,5 @@ module.exports = mongoose => mongoose.model('board',
             }, { timestamps: true}
         )
     )
+}
+
